@@ -1,0 +1,16 @@
+# /etc/caddy/Caddyfile — Caddy handles TLS for the Porkbun domains automatically.
+duplimancy.com, www.duplimancy.com {
+	encode zstd gzip
+	handle /api/* {
+		reverse_proxy 127.0.0.1:8787
+	}
+	handle {
+		root * /srv/duplimancy/web
+		try_files {path} /index.html
+		file_server
+	}
+}
+
+duplimancy.net, www.duplimancy.net {
+	redir https://duplimancy.com{uri} permanent
+}

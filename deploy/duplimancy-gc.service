@@ -1,0 +1,10 @@
+# /etc/systemd/system/duplimancy-gc.service
+[Unit]
+Description=Duplimancy project garbage collection
+
+[Service]
+Type=oneshot
+User=duplimancy
+WorkingDirectory=/srv/duplimancy/api
+EnvironmentFile=/srv/duplimancy/.env
+ExecStart=/usr/bin/node dist/gc.js

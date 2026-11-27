@@ -1,0 +1,10 @@
+{
+  "CORSRules": [
+    {
+      "AllowedOrigins": ["https://duplimancy.com", "http://localhost:5173"],
+      "AllowedMethods": ["GET", "PUT"],
+      "AllowedHeaders": ["Content-Type", "Content-Length", "x-amz-acl", "Cache-Control"],
+      "MaxAgeSeconds": 3600
+    }
+  ]
+}
