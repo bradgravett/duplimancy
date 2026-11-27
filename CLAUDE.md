@@ -2,7 +2,7 @@
 
 Website for applying custom card frames to lists of Magic: The Gathering cards, for on-screen previews and print-on-demand proxies (Commander, Premodern, Legacy, etc.; custom cubes later).
 
-Status: design stage. No app code yet.
+Status: scaffolded. pnpm monorepo: `apps/web` (React + Vite editor), `apps/api` (Fastify + TypeScript + Postgres), `packages/shared` (card schema, decklist parser), `packages/anhelo` (art generator). See `docs/architecture.md`.
 
 ## Product decisions
 - **No official frames.** Don't emulate WotC's frames; kits are original designs.
@@ -19,6 +19,7 @@ Status: design stage. No app code yet.
 - **Fonts:** shared library mirrored from google/fonts, pinned to a commit. Kits reference families by name; no kit-uploaded fonts.
 
 ## Docs
+- `docs/architecture.md` — app layout, no-login projects, storage, export, deploy
 - `docs/kit-spec.md` — kit format, card schema, `@duplimancy/core`, render pipeline, upload validation, legal notes
 - `docs/typst-primer.md` — Typst syntax crash course with a proxy-sheet example
 - `docs/anhelo-design.md` — deterministic abstract art generator (seeding, layers, symmetry, palettes, faces, figures)
@@ -27,6 +28,7 @@ Read the relevant doc before working on kits, rendering or art generation. Updat
 
 ## Determinism rules
 - Same inputs → byte-identical output (kits and Anhelo alike).
+- `packages/anhelo/src/anhelo.js` is the test-bench code verbatim: don't refactor it, since any change to RNG call order changes every card's art. Its golden-hash tests guard this.
 - Anhelo: seeded PRNG (`xmur3` → `mulberry32`), never `Math.random`; one seed stream per concern; coordinates rounded to 0.1; pure SVG, no WebGL.
 
 ## Infrastructure

@@ -1,0 +1,10 @@
+# /etc/systemd/system/duplimancy-gc.timer
+[Unit]
+Description=Run Duplimancy GC daily
+
+[Timer]
+OnCalendar=*-*-* 04:30:00
+Persistent=true
+
+[Install]
+WantedBy=timers.target

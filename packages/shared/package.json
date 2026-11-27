@@ -1,0 +1,17 @@
+{
+  "name": "@duplimancy/shared",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "test": "node --experimental-strip-types --no-warnings --test src/*.test.ts",
+    "typecheck": "tsc -p .",
+    "build": "true"
+  },
+  "devDependencies": {
+    "@types/node": "22.10.1"
+  }
+}
